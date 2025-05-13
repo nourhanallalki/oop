@@ -1,0 +1,70 @@
+import pandas as pd
+class DataLoader:
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.data = None
+class DataLoader:
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.data = None
+
+    def load_data(self):
+        try:
+            self.data = pd.read_csv(self.file_path)
+            print("Données chargées avec succès!")
+        except Exception as e:
+            print(f"Erreur lors du chargement des données: {e}")
+
+    def get_data(self):
+        return self.data
+class CovidDataAnalyzer:
+    def __init__(self, data):
+        self.data = data
+class CovidDataAnalyzer:
+    def __init__(self, data):
+        self.data = data
+
+    def deaths_by_state(self):
+        deaths = self.data.groupby("State")["COVID-19 Deaths"].sum().sort_values(ascending=False)
+        print("Nombre total de décès par État:")
+        print(deaths)
+        return deaths
+
+    def deaths_by_age_group(self):
+        deaths = self.data.groupby("Age Group")["COVID-19 Deaths"].sum().sort_values(ascending=False)
+        print("Nombre total de décès par tranche d'âge:")
+        print(deaths)
+        return deaths
+
+    def deaths_by_sex(self):
+        deaths = self.data.groupby("Sex")["COVID-19 Deaths"].sum()
+        print("Nombre total de décès par sexe:")
+        print(deaths)
+        return deaths
+
+    def summary_statistics(self):
+        print("Statistiques descriptives sur les décès COVID-19:")
+        stats = self.data["COVID-19 Deaths"].describe()
+        print(stats)
+        return stats
+class DataLoader:
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.data = None
+
+    def load_data(self):
+        import pandas as pd
+        try:
+            self.data = pd.read_csv(self.file_path)
+            print("Données chargées avec succès!")
+        except Exception as e:
+            print(f"Erreur lors du chargement des données: {e}")
+
+    def get_data(self):
+        return self.data
+
+if __name__ == "__main__":
+    loader = DataLoader("/mnt/data/COVID-19_Death_Counts_by_Sex_Age_and_State.csv")
+    loader.load_data()
+    data = loader.get_data()
+    # Further processing...
