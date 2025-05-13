@@ -1,0 +1,31 @@
+import graphviz
+
+# Création d'un diagramme orienté
+dot = graphviz.Digraph(format='png')
+
+# Classe DataLoader
+dot.node('DataLoader', '''<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+  <TR><TD BGCOLOR="lightblue"><B>DataLoader</B></TD></TR>
+  <TR><TD ALIGN="LEFT">- file_path: str</TD></TR>
+  <TR><TD ALIGN="LEFT">- data: DataFrame</TD></TR>
+  <TR><TD ALIGN="LEFT">+ __init__(file_path: str)</TD></TR>
+  <TR><TD ALIGN="LEFT">+ load_data(): None</TD></TR>
+  <TR><TD ALIGN="LEFT">+ get_data(): DataFrame</TD></TR>
+</TABLE>>''')
+
+# Classe CovidDataAnalyzer
+dot.node('CovidDataAnalyzer', '''<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+  <TR><TD BGCOLOR="lightgreen"><B>CovidDataAnalyzer</B></TD></TR>
+  <TR><TD ALIGN="LEFT">- data: DataFrame</TD></TR>
+  <TR><TD ALIGN="LEFT">+ __init__(data: DataFrame)</TD></TR>
+  <TR><TD ALIGN="LEFT">+ deaths_by_state(): Series</TD></TR>
+  <TR><TD ALIGN="LEFT">+ deaths_by_age_group(): Series</TD></TR>
+  <TR><TD ALIGN="LEFT">+ deaths_by_sex(): Series</TD></TR>
+  <TR><TD ALIGN="LEFT">+ summary_statistics(): Series</TD></TR>
+</TABLE>>''')
+
+# Relation entre les classes
+dot.edge('DataLoader', 'CovidDataAnalyzer', label='fournit les données à')
+
+# Enregistrement et affichage du diagramme
+dot.render('class_diagram', view=True)  # view=True ouvre automatiquement l'image
